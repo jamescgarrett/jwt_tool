@@ -1,0 +1,14 @@
+{
+  "claims": {
+    "iss": "<ISS_CLAIM>",
+    "aud": "<AUD_CLAIM>",
+    "client_id": "<CLIENT_ID_CLAIM>",
+    "sub": "<SUB_CLAIM>",
+    "custom_claim_1": "<CUSTOM_CLAIM_1>",
+    "custom_claim_2": "<CUSTOM_CLAIM_2>"
+  },
+  "header": {
+    "kid": "<OPTIONAL_KID>"
+  },
+  "well_known_endpoint": "<PATH_TO_WELL_KNOWN_JSON"
+}

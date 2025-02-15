@@ -1,0 +1,5 @@
+config.json
+*.pem
+well-known.json
+jwk.json
+public-key.json
