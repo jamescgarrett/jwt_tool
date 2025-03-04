@@ -8,7 +8,7 @@
       "client_id": "<CLIENT_ID_CLAIM>",
       "sub": "<SUB_CLAIM>",
       "scope": "<SCOPE_CLAIM>",
-      "urn:auth0:realm": "<CUSTOM_CLAIM>",
+      "urn:auth0:connection": "<CUSTOM_CLAIM>",
       "urn:auth0:identity_user_id": "<CUSTOM_CLAIM>"
     },
     "header": {

@@ -159,7 +159,7 @@ func createMyAccountRS(params MGMTAPIRequestParams) error {
 }
 
 func createMyAccountClientGrant(params MGMTAPIRequestParams) error {
-	payload := strings.NewReader(fmt.Sprintf("{ \"client_id\": \"%s\", \"audience\": \"%s\", \"scope\": [\"create:authentication-methods\"] }", params.ClientID, fmt.Sprintf("https://%s/me/", params.Domain)))
+	payload := strings.NewReader(fmt.Sprintf("{ \"client_id\": \"%s\", \"audience\": \"%s\", \"scope\": [\"create:authentication_methods\"] }", params.ClientID, fmt.Sprintf("https://%s/me/", params.Domain)))
 
 	body, err := executeHttpPostRequest(ExecuteHttpPostRequestParams{
 		Payload: payload,
@@ -194,7 +194,7 @@ func createMyAccountClientGrant(params MGMTAPIRequestParams) error {
 }
 
 func getRSAccessToken(params MGMTAPIRequestParams) (*OauthTokenResponse, error) {
-	payload := strings.NewReader(fmt.Sprintf("grant_type=password&username=%s&password=%s&scope=create:authentication-methods&audience=%s&client_id=%s&client_secret=%s", params.Username, params.Password, fmt.Sprintf("https://%s/me/", params.Domain), params.ClientID, params.ClientSecret))
+	payload := strings.NewReader(fmt.Sprintf("grant_type=password&username=%s&password=%s&scope=create:authentication_methods&audience=%s&client_id=%s&client_secret=%s", params.Username, params.Password, fmt.Sprintf("https://%s/me/", params.Domain), params.ClientID, params.ClientSecret))
 
 	tokenResponse, err := executeOauthTokenRequest(ExecuteHttpPostRequestParams{
 		Payload: payload,
