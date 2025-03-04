@@ -1,14 +1,30 @@
 {
-  "claims": {
-    "iss": "<ISS_CLAIM>",
-    "aud": "<AUD_CLAIM>",
-    "client_id": "<CLIENT_ID_CLAIM>",
-    "sub": "<SUB_CLAIM>",
-    "custom_claim_1": "<CUSTOM_CLAIM_1>",
-    "custom_claim_2": "<CUSTOM_CLAIM_2>"
+  "custom": {
+    "use_rs": true,
+    "debug": false,
+    "claims": {
+      "iss": "<ISS_CLAIM>",
+      "aud": "<AUD_CLAIM>",
+      "client_id": "<CLIENT_ID_CLAIM>",
+      "sub": "<SUB_CLAIM>",
+      "scope": "<SCOPE_CLAIM>",
+      "urn:auth0:realm": "<CUSTOM_CLAIM>",
+      "urn:auth0:identity_user_id": "<CUSTOM_CLAIM>"
+    },
+    "header": {
+      "kid": "<JWK_KID>"
+    },
+    "jwk_local": false,
+    "jwk_local_file": "<LOCAL_JWK_FILE_IF_jwk_local",
+    "well_known_endpoint": "<WELL_KNOWN_ENDPOINT>",
+    "private_key_file_path": "<PEM_PRIVATE_KEY_FILE>"
   },
-  "header": {
-    "kid": "<OPTIONAL_KID>"
-  },
-  "well_known_endpoint": "<PATH_TO_WELL_KNOWN_JSON"
+  "rs": {
+    "setup_rs": false,
+    "domain": "<DOMAIN i.e. tenant.local.dev.auth.com>",
+    "client_secret": "<CLIENT_SECRET>",
+    "client_id": "<CLIENT_ID>",
+    "username": "<AUTH0 User Identifier>",
+    "password": "<Auth0 User Password>"
+  }
 }
