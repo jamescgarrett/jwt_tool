@@ -9,59 +9,72 @@ as long as you have the following:
 ```shell
 ./scripts/bootstrap.sh
 ```
-This will create `private-key.pem`, `config.json` and `users.json` files. Be sure to fill in your tenant details in the `config.json` file before proceeding.
+This will create a `config.json`file. Be sure to fill in your tenant details in the `config.json` file before proceeding.
 
 ## config.json
 
 This file contains your JWT details.
 ```json
 {
-  "claims": {
-    "iss": "<ISS_CLAIM>",
-    "aud": "<AUD_CLAIM>",
-    "client_id": "<CLIENT_ID_CLAIM>",
-    "sub": "<SUB_CLAIM>",
-    "custom_claim_1": "<CUSTOM_CLAIM_1>",
-    "custom_claim_2": "<CUSTOM_CLAIM_2>"
-    ...
+  "custom": {
+    "use_rs": false,
+    "debug": false,
+    "claims": {
+      "iss": "https://<TENANT>.local.dev.auth0.com",
+      "aud": "https://<TENANT>.local.dev.auth0.com/me",
+      "client_id": "<CLIENT_ID>", // can swap for `azp` if wanting auth0 profile
+      "sub": "<USER_ID>",
+      "urn:auth0:identity_user_id": "<IDENTITY_USER_ID>",
+      "urn:auth0:connection": "<CONNECTION_NAME>",
+      "scope": "create:authentication_methods",
+      "exp": 9413432160
+    },
+    "header": {
+      "kid": "<YOU CAN GRAB THIS FROM YOUR TENANT JWK i.e https://<TENANT>.local.dev.auth0.com/.well-known/jwks.json"
+    },
+    "well_known_endpoint": "https://<TENANT>.local.dev.auth0.com/.well-known/jwks.json",
+    "jwk_local": false,
+    "private_key_file_path": "private-key-basic.pem"
   },
-  "header": {
-    "kid": "<OPTIONAL_KID>"
-  },
-  "well_known_endpoint": "<PATH_TO_WELL_KNOWN_JSON"
+  // NOTE: this config is not necessary and won't work until we are properly generating the access token in auth0-server for my-account
+  "rs": {
+    "setup_rs": false,
+    "domain": "<TENANT>.local.dev.auth0.com",
+    "client_secret": "<CLIENT_SECRET>",
+    "client_id": "<CLIENT_ID>",
+    "username": "<USER_IDENTIFIER>", // script uses ROPG to get access token for api2
+    "password": "<USER_PASSWORD>" // script uses ROPG to get access token for api2
+  }
 }
 ```
 
 It is **required** to fill in the following:
 - `iss`
 - `aud`
-- `client_id`
+- `client_id` or `azp`
 - `sub`
 
 ## Usage
 
 ### Flags
 - `-configFile`: Path to your `config.json` file
-- `-privateKeyFile`: Path to your private key `.pem` file
-- `-jwkFile`: Local JWK file. Will be used if defined, regardless of `well_known_endpoint` being defined in `config.json`
-- `-debug`: Log extra details
 
 ### Using a Well-Known Endpoint
-Be sure to configure the `well_known_endpoint` property in the `confi.json` file
+Be sure to configure the `well_known_endpoint` property in the `config.json` file
 ```sh
-  go run main.go -configFile config.json -privateKeyFile private_key.pem
+  go run *.go -configFile config.json
 ```
 
 ### Using a Local JWK File
 Be sure to configure the `well_known_endpoint` property in the `confi.json` file
 ```sh
-  go run main.go -configFile config.json -privateKeyFile private_key.pem
+  ggo run *.go -configFile config.json
 ```
 
 ### Debug Logs
-You can get some extra log details, by using the `-debug` flag
+You can get some extra log details, by using the `debug` setting in the config file
 ```sh
-  go run main.go -configFile config.json -privateKeyFile private_key.pem -debug true
+  go run *.go -configFile config.json
 ```
 
 ## Make script executable from terminal
@@ -79,5 +92,5 @@ sudo mv jwttool /usr/local/bin/
 ```
 After these command you should be able to run the script from any location with
 ```shell
-jwttool -configFile ~/Docments/jwt/config.json -privateKeyFile ~/Docments/jwt/private_key.pem -debug true
+jwttool -configFile config.json
 ```
