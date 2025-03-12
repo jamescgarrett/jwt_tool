@@ -17,8 +17,8 @@ This file contains your JWT details.
 ```json
 {
   "custom": {
-    "use_rs": false,
-    "debug": false,
+    "use_rs": false, // used in determining whether to use the the resouece server or create a custom token
+    "debug": false, // activate extra logging
     "claims": {
       "iss": "https://<TENANT>.local.dev.auth0.com",
       "aud": "https://<TENANT>.local.dev.auth0.com/me",
@@ -33,8 +33,8 @@ This file contains your JWT details.
       "kid": "<YOU CAN GRAB THIS FROM YOUR TENANT JWK i.e https://<TENANT>.local.dev.auth0.com/.well-known/jwks.json"
     },
     "well_known_endpoint": "https://<TENANT>.local.dev.auth0.com/.well-known/jwks.json",
-    "jwk_local": false,
-    "private_key_file_path": "private-key-basic.pem"
+    "jwk_local": false, // activate if storing the jwk in a local file, combine with the a config value for `jwk_local_file`
+    "private_key_file_path": "private-key.pem"
   },
   // NOTE: this config is not necessary and won't work until we are properly generating the access token in auth0-server for my-account
   "rs": {
