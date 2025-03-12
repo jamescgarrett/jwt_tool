@@ -48,7 +48,7 @@ This file contains your JWT details.
 }
 ```
 
-It is **required** to fill in the following:
+If using `custom` it is **required** to fill in the following:
 - `iss`
 - `aud`
 - `client_id` or `azp`
