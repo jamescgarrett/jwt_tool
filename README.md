@@ -16,9 +16,9 @@ This will create a `config.json`file. Be sure to fill in your tenant details in 
 This file contains your JWT details.
 ```json
 {
+  "use_rs": true, // used in determining whether to use the the resouece server or create a custom token
+  "debug": false, // activate extra logging
   "custom": {
-    "use_rs": false, // used in determining whether to use the the resouece server or create a custom token
-    "debug": false, // activate extra logging
     "claims": {
       "iss": "https://<TENANT>.local.dev.auth0.com",
       "aud": "https://<TENANT>.local.dev.auth0.com/me",

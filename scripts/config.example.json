@@ -1,7 +1,7 @@
 {
+  "use_rs": true,
+  "debug": false,
   "custom": {
-    "use_rs": true,
-    "debug": false,
     "claims": {
       "iss": "<ISS_CLAIM>",
       "aud": "<AUD_CLAIM>",
