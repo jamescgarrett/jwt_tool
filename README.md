@@ -20,30 +20,30 @@ This file contains your JWT details.
   "debug": false, // activate extra logging
   "custom": {
     "claims": {
-      "iss": "https://<TENANT>.local.dev.auth0.com",
-      "aud": "https://<TENANT>.local.dev.auth0.com/me",
-      "client_id": "<CLIENT_ID>", // can swap for `azp` if wanting auth0 profile
+      "iss": "https://domain.com",
+      "aud": "https://domain.com/audience",
+      "client_id": "<CLIENT_ID>",
       "sub": "<USER_ID>",
-      "urn:auth0:identity_user_id": "<IDENTITY_USER_ID>",
-      "urn:auth0:connection": "<CONNECTION_NAME>",
-      "scope": "create:authentication_methods",
+      "custom_claim": "<CUSTOM_CLAIM>",
+      "scope": "myscope",
       "exp": 9413432160
     },
     "header": {
-      "kid": "<YOU CAN GRAB THIS FROM YOUR TENANT JWK i.e https://<TENANT>.local.dev.auth0.com/.well-known/jwks.json"
+      "kid": "<YOU CAN GRAB THIS FROM YOUR JWK"
     },
-    "well_known_endpoint": "https://<TENANT>.local.dev.auth0.com/.well-known/jwks.json",
+    "well_known_endpoint": "https://domain.com/.well-known/jwks.json",
     "jwk_local": false, // activate if storing the jwk in a local file, combine with the a config value for `jwk_local_file`
     "private_key_file_path": "private-key.pem"
   },
   // NOTE: this config is not necessary and won't work until we are properly generating the access token in auth0-server for my-account
   "rs": {
     "setup_rs": false,
-    "domain": "<TENANT>.local.dev.auth0.com",
+    "domain": "domain.com",
     "client_secret": "<CLIENT_SECRET>",
     "client_id": "<CLIENT_ID>",
-    "username": "<USER_IDENTIFIER>", // script uses ROPG to get access token for api2
-    "password": "<USER_PASSWORD>" // script uses ROPG to get access token for api2
+    // TODO: Use M2M for this....
+    "username": "<USER_IDENTIFIER>",
+    "password": "<USER_PASSWORD>"
   }
 }
 ```
@@ -51,7 +51,7 @@ This file contains your JWT details.
 If using `custom` it is **required** to fill in the following:
 - `iss`
 - `aud`
-- `client_id` or `azp`
+- `client_id`
 - `sub`
 
 ## Usage
